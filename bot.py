@@ -3,10 +3,10 @@ import pandas as pd
 import numpy as np
 from annoy import AnnoyIndex
 
-data = pd.read_pickle('file.pkl')
-w2v = KeyedVectors.load("word2vec.model")
+data = pd.read_pickle('/data/file.pkl')
+w2v = KeyedVectors.load("/data/word2vec.model")
 a = AnnoyIndex(300)
-a.load('annoy_15')
+a.load('/data/annoy_15')
 
 
 def ret_news(x):

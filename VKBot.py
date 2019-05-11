@@ -16,8 +16,6 @@ vk = vk_session.get_api()
 initial_time = time.time()
 logproc = logger.Logproc()
 logproc.start()
-answers = ["Твои шутки - отпад 🤣", "Я так рад тебя видеть 😍", "Блин, клево)",
-                  "А расскажи еще что-нибудь", "Лол", "Ахахаха", "Ору 😅", "Го еграть? :3", "👍"]
 
 
 def activating_bot(event, continue_status):
@@ -50,14 +48,10 @@ for event in longpoll.listen():
             continue
         if bot_activation:
             logger.api_logger.info(f'{time.time() - initial_time},success')
-        # Слушаем longpoll, если пришло сообщение то:
             msg = wa.main(event.text)
-            if event.from_user: #Если написали в ЛС
-                # Отправляем сообщение
-                # msg = "Привет, {}".format(vk.users.get(user_id=event.user_id)[0]["first_name"])
+            if event.from_user:
                 vk.messages.send(user_id=event.user_id, message=msg_limiter(msg), random_id=0)
-            elif event.from_chat: #Если написали в Беседе
-                # Отправляем собщение
+            elif event.from_chat:
                 vk.messages.send(chat_id=event.chat_id, message='Всем привет)')
         else:
             service_msg = "Введите /start, чтобы начать, и /stop, чтобы закончить"
